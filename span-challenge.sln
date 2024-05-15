@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScores", "GameScores\GameScores.csproj", "{90D6BFE8-5C4D-469D-9843-919BD3E70565}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameScores.Tests", "GameScores.Tests\GameScores.Tests.csproj", "{FCEDB375-86FA-4A38-95AD-8F40E8650372}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90D6BFE8-5C4D-469D-9843-919BD3E70565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90D6BFE8-5C4D-469D-9843-919BD3E70565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90D6BFE8-5C4D-469D-9843-919BD3E70565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90D6BFE8-5C4D-469D-9843-919BD3E70565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCEDB375-86FA-4A38-95AD-8F40E8650372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCEDB375-86FA-4A38-95AD-8F40E8650372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCEDB375-86FA-4A38-95AD-8F40E8650372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCEDB375-86FA-4A38-95AD-8F40E8650372}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

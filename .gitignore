@@ -1,0 +1,32 @@
+syntax: glob
+
+### VisualStudio ###
+.vscode/
+
+# Tool Runtime Dir
+.dotnet
+.dotnet-mono
+.dotnet-tools-global
+.packages
+.tools
+
+# Build results
+artifacts/
+.idea/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+bld/
+[Bb]in/
+[Oo]bj/
+MSBuild_Logs/
+msbuild.log
+msbuild.err
+msbuild.wrn
+*.binlog
+.deps/
+.dirstamp
+.libs/
+*.lo
+*.o
