@@ -14,7 +14,7 @@ public class EntryReaderConsole : IEntryReader
         Console.WriteLine($"Please provide the {numberMatches} match(es) in the next format: 'Good Team FC 2, BadTeam 3'");
         do
         {
-            Console.WriteLine("Provide the Match # "+ (matches.Count + 1));
+            Console.WriteLine("Provide Match # "+ (matches.Count + 1));
             string? entriesString = Console.ReadLine();
             entriesString = entriesString == null ? "" : entriesString.Trim();
             if (regex.Match(entriesString).Success)
