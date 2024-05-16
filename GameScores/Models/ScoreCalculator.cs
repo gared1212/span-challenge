@@ -1,4 +1,4 @@
-namespace GameScores;
-public class ScoreCalculator{
+
+public class ScoreCalculator : IScoreCalculator {
     
 }

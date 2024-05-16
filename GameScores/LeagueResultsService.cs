@@ -1,17 +1,30 @@
-namespace GameScores;
-
 using Microsoft.Extensions.Logging;
-using System.IO;
+
+
 public class LeagueResultsService {
     ILogger logger;
-    public LeagueResultsService(ILogger logger){
+    IEntryReader reader;
+    IScoreCalculator scoreCalculator;
+
+    public LeagueResultsService(ILogger logger, IEntryReader reader, IScoreCalculator scoreCalculator){
         this.logger = logger;
+        this.reader = reader;
+        this.scoreCalculator = scoreCalculator;
     }
 
     public int CalculateScore(){
-        string? line = Console.ReadLine();
-        Console.WriteLine(line);
-        return 0;
+        int entries = 0;
+        List<Match> matches = new List<Match>();
+        entries = reader.GetNumberEntries();
+        if (entries != 0)
+        {
+            matches = reader.GetMatches(entries);
+            return 0;
+        }        
+        return 1;
     }
+   
+
+
 
 }
