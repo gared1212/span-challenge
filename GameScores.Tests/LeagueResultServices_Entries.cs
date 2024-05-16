@@ -16,7 +16,7 @@ public class LeagueResultServices_Entries
         var loggerMock = new Mock<ILogger>();
         var scoreCalculatorMock = new Mock<IScoreCalculator>();
         mockingNumberEntries.Setup(m => m.GetNumberEntries()).Returns(0);
-        LeagueResultsService service = new LeagueResultsService(loggerMock.Object, mockingNumberEntries.Object,scoreCalculatorMock.Object);
+        LeagueResultsService service = new LeagueResultsService(loggerMock.Object, mockingNumberEntries.Object, scoreCalculatorMock.Object, new OutputWriterConsole());
         Assert.True(service.CalculateScore() == 1);
     }
 
@@ -24,13 +24,15 @@ public class LeagueResultServices_Entries
     public void GetNumberEntries_ValidEntry_ReturnZero()
     {
         var mockingNumberEntries = new Mock<IEntryReader>();
-        var loggerMock = new Mock<ILogger>();
+        var loggerMock = new Mock<ILogger>();        
         var scoreCalculatorMock = new Mock<IScoreCalculator>();
+        var mockingOutputWriter = new Mock<IOutputWriter>();
         mockingNumberEntries.Setup(m => m.GetNumberEntries()).Returns(12);
         var matches = new List<Models.Match>();
         matches.Add(new Models.Match("Lions", 1, "Atletico san Pancho", 1));
         mockingNumberEntries.Setup(m => m.GetMatches(12)).Returns(matches);
-        LeagueResultsService service = new LeagueResultsService(loggerMock.Object, mockingNumberEntries.Object, scoreCalculatorMock.Object);
+        mockingOutputWriter.Setup(x => x.PublishResults(new SortedSet<(string name, int points)>())).Verifiable();
+        LeagueResultsService service = new LeagueResultsService(loggerMock.Object, mockingNumberEntries.Object, scoreCalculatorMock.Object, mockingOutputWriter.Object);
         Assert.True(service.CalculateScore() == 0);
     }
 }
