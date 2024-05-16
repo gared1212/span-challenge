@@ -1,5 +1,7 @@
 ﻿
 using Microsoft.Extensions.Logging;
+using GameScores.Infra;
+using GameScores.Services;
 
 class App
 {

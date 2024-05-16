@@ -1,12 +1,18 @@
+namespace GameScores.Services;
 
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using GameScores.Models;
 
 public class ScoreCalculator : IScoreCalculator {
 
     public ScoreCalculator() { }
 
-    public SortedSet<(string, int)> CalculateScore(List<Match> matches) {
+    public void calculateMatchPoints(List<Match> matches) {
+        foreach (Match match in matches) {
+            calculatePoints(match);
+        }
+    }
+
+    public SortedSet<(string, int)> CalculateTotalLeagueRaking(List<Match> matches) {
         Dictionary<string, int> mergedResults = mergeResults(matches);
         SortedSet<(string, int)> leagueResults = sortDictionary(mergedResults);
         return leagueResults;
@@ -54,6 +60,25 @@ public class ScoreCalculator : IScoreCalculator {
             leagueResults.Add((entry.Key, entry.Value));
         }
         return leagueResults;
+    }
+
+    private void calculatePoints(Match match)
+    {
+        if (match.LocalScore == match.VisitorScore)
+        {
+            match.VisitorPoints = 1;
+            match.LocalPoints = 1;
+        }
+        else if (match.LocalScore > match.VisitorScore)
+        {
+            match.LocalPoints = 3;
+            match.VisitorPoints = 0;
+        }
+        else
+        {
+            match.LocalPoints = 0;
+            match.VisitorPoints = 3;
+        }
     }
 
 }

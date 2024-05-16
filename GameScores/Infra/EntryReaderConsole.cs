@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+﻿namespace GameScores.Infra;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
+
+
+
 
 public class EntryReaderConsole : IEntryReader
 {
-    public List<Match> GetMatches(int numberMatches)
+    public List<Models.Match> GetMatches(int numberMatches)
     {
-        List<Match> matches = new List<Match>();
+        List<Models.Match> matches = new List<Models.Match>();
         int attempts = 0;
         Regex regex = new Regex(@"^.+\s\d+,.+\s\d+$");
         Console.WriteLine($"Please provide the {numberMatches} match(es) in the next format: 'Good Team FC 2, BadTeam 3'");
@@ -60,9 +56,9 @@ public class EntryReaderConsole : IEntryReader
         return entries;
     }
 
-    private Match normalizeMatch(String match) {
+    private Models.Match normalizeMatch(String match) {
         string[] results = match.Split(',');
-        return new Match(getTeam(results[0]), getScore(results[0]), getTeam(results[1]), getScore(results[1]));     
+        return new Models.Match(getTeam(results[0]), getScore(results[0]), getTeam(results[1]), getScore(results[1]));     
     }
 
     private string getTeam(string result)

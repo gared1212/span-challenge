@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
+﻿namespace GameScores.Infra;
+using GameScores.Models;
 public interface IEntryReader
 {
      public int GetNumberEntries();
