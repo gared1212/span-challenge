@@ -1,7 +1,8 @@
 syntax: glob
 
 ### VisualStudio ###
-.vscode/
+.vs**/**
+
 
 # Tool Runtime Dir
 .dotnet
