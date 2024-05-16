@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿namespace GameScores.Infra;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
+
+
 
 public class EntryReaderConsole : IEntryReader
 {
-    public List<Match> GetMatches(int numberMatches)
+    public List<Models.Match> GetMatches(int numberMatches)
     {
-        List<Match> matches = new List<Match>();
+        List<Models.Match> matches = new List<Models.Match>();
         int attempts = 0;
-       
-        Console.WriteLine($"Please provide the {numberMatches} match(es) in the next format: Good Team FC 2, BadTeam 3 - Team name plus the score comma separated");
+        Regex regex = new Regex(@"^.+\s\d+,.+\s\d+$");
+        Console.WriteLine($"Please provide the {numberMatches} match(es) in the next format: 'Good Team FC 2, BadTeam 3'");
         do
         {
-            Regex regex = new Regex(@"^.+\s\d+,.+\s\d+$");
-            string? entriesString = Console.ReadLine();            
-            if (regex.Match(entriesString == null ? "" : entriesString.Trim()).Success)
+            Console.WriteLine("Provide the Match # "+ (matches.Count + 1));
+            string? entriesString = Console.ReadLine();
+            entriesString = entriesString == null ? "" : entriesString.Trim();
+            if (regex.Match(entriesString).Success)
             {
-                attempts = 0;
+                matches.Add(normalizeMatch(entriesString));
+                attempts = 0;                
             } 
             else
             {
@@ -55,5 +56,30 @@ public class EntryReaderConsole : IEntryReader
         return entries;
     }
 
+    private Models.Match normalizeMatch(String match) {
+        string[] results = match.Split(',');
+        return new Models.Match(getTeam(results[0]), getScore(results[0]), getTeam(results[1]), getScore(results[1]));     
+    }
+
+    private string getTeam(string result)
+    {
+        int index = result.LastIndexOf(' ');
+        return result.Substring(0, index).Trim();
+        
+    }
+
+    private int getScore(string result)
+    {
+        int index = result.LastIndexOf(' ');
+        int score = 0;
+        if (int.TryParse(result.Substring(index + 1).Trim(), out score))
+        {
+            return score;
+        }
+        else
+        {
+            throw new ArgumentException("Not able to process the score");
+        }
+    }
 }
 

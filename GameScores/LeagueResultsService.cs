@@ -1,4 +1,7 @@
 using Microsoft.Extensions.Logging;
+using GameScores.Infra;
+using GameScores.Models;
+using GameScores.Services;
 
 
 public class LeagueResultsService {
@@ -16,12 +19,12 @@ public class LeagueResultsService {
         int entries = 0;
         List<Match> matches = new List<Match>();
         entries = reader.GetNumberEntries();
-        if (entries != 0)
-        {
-            matches = reader.GetMatches(entries);
-            return 0;
-        }        
-        return 1;
+        if (entries == 0){return 1;}
+        matches = reader.GetMatches(entries);
+        if (matches.Count == 0) { return 1; }
+        scoreCalculator.calculateMatchPoints(matches);
+        var leagueResults = scoreCalculator.CalculateTotalLeagueRaking(matches);
+        return 0;
     }
    
 
