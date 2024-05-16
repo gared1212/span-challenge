@@ -1,6 +1,12 @@
 # span-challenge
 ### Code Challenge
-- build the app {dotnet location} build
+- Verify that you have installed .NET Core Runtime with version '8.0.x'
+- Clone the repo 
+- go to the solution folder
+- run - dotnet restore
+- run - dotnet build --no-restore
+- go to the GameScores folder 
+- run - dotnet run
 - Run the app - {dotnet location} run src/App.cs
 
 ####Sample input:
