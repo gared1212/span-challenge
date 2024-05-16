@@ -11,8 +11,9 @@ public class LeagueResultServices_Entries
     {
         var mockingNumberEntries = new Mock<IEntryReader>();
         var loggerMock = new Mock<ILogger>();
+        var scoreCalculatorMock = new Mock<IScoreCalculator>();
         mockingNumberEntries.Setup(m => m.GetNumberEntries()).Returns(0);
-        LeagueResultsService service = new LeagueResultsService(loggerMock.Object, mockingNumberEntries.Object);
+        LeagueResultsService service = new LeagueResultsService(loggerMock.Object, mockingNumberEntries.Object,scoreCalculatorMock.Object);
         Assert.True(service.CalculateScore()==1);
     }
 
@@ -21,8 +22,9 @@ public class LeagueResultServices_Entries
     {
         var mockingNumberEntries = new Mock<IEntryReader>();
         var loggerMock = new Mock<ILogger>();
+        var scoreCalculatorMock = new Mock<IScoreCalculator>();
         mockingNumberEntries.Setup(m => m.GetNumberEntries()).Returns(12);
-        LeagueResultsService service = new LeagueResultsService(loggerMock.Object, mockingNumberEntries.Object);
+        LeagueResultsService service = new LeagueResultsService(loggerMock.Object, mockingNumberEntries.Object, scoreCalculatorMock.Object);
         Assert.True(service.CalculateScore() == 0);
     }
 }

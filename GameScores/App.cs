@@ -8,7 +8,7 @@ class App
         ILogger logger =  App.CreateLogger();
         var watch = System.Diagnostics.Stopwatch.StartNew();
         logger.LogInformation("Starting the app.");
-        LeagueResultsService leagueResultsService = new LeagueResultsService(logger, new EntryReaderConsole(), new ScoreCalculator);
+        LeagueResultsService leagueResultsService = new LeagueResultsService(logger, new EntryReaderConsole(), new ScoreCalculator());
         watch.Stop();       
         long elapsedMs = watch.ElapsedMilliseconds;
         logger.LogInformation("App Started in {elapsedTime}ms.", elapsedMs);
